@@ -1,7 +1,10 @@
 import styles from '../sass/Item.module.scss'
 
-const Item = ({ info: { name, symbol, priceUsd, rank, explorer } }) => {
+const Item = ({
+    info: { name, symbol, priceUsd, rank, changePercent24Hr, explorer },
+}) => {
     const price = parseFloat(priceUsd).toFixed(7)
+    const changePercent = parseFloat(changePercent24Hr).toFixed(7)
 
     return (
         <li className={styles.item}>
@@ -9,6 +12,16 @@ const Item = ({ info: { name, symbol, priceUsd, rank, explorer } }) => {
             <p>{symbol}</p>
             <p>Rank: {rank}</p>
             <p className={styles.itemPrice}>Precio: {price}</p>
+            <p>
+                Variación 24hrs:{' '}
+                <span
+                    className={
+                        changePercent > 0 ? styles.positive : styles.negative
+                    }
+                >
+                    {changePercent}%
+                </span>
+            </p>
             <a
                 className={styles.itemLink}
                 href={explorer}
