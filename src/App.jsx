@@ -1,39 +1,27 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-
-async function fetchAPI(setCriptos) {
-    const API_URL = import.meta.env.VITE_API_URL
-
-    try {
-        const { data } = await axios.get(`${API_URL}assets`)
-
-        setCriptos(data.data)
-    } catch (error) {
-        console.error('La petición falló')
-    }
-}
+import styles from './sass/App.module.scss'
+import List from './components/List'
 
 function App() {
-    const [criptos, setCriptos] = useState()
-
-    useEffect(() => {
-        fetchAPI(setCriptos)
-    }, [])
-
     return (
         <>
-            <h1>Lista de criptosmonedas</h1>
-            <ol>
-                {criptos ? (
-                    criptos.map(({ id, name, priceUsd }) => (
-                        <li key={id}>
-                            Nombre: {name} Precio: {priceUsd}
-                        </li>
-                    ))
-                ) : (
-                    <span>Cargando...</span>
-                )}
-            </ol>
+            <header className={styles.header}>
+                <h1 className={styles.headerTitle}>Lista de criptosmonedas</h1>
+            </header>
+            <main>
+                <List />
+            </main>
+            <footer className={styles.footer}>
+                <a
+                    className={styles.footerLink}
+                    href='https://www.flaticon.es/iconos-gratis/cargando'
+                    title='cargando iconos'
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    Cargando iconos creados por Krystsina Mikhailouskaya -
+                    Flaticon
+                </a>
+            </footer>
         </>
     )
 }
