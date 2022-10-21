@@ -1,0 +1,12 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-block: 3rem;
+    padding-inline: 1rem;
+
+    &Link {
+        color: hsl(190deg 51% 28%);
+        text-decoration: underline;
+        text-align: center;
+    }
+}

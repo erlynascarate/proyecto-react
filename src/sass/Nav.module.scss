@@ -1,0 +1,21 @@
+.nav {
+    background-color: hsl(180deg 93% 30%);
+
+    &List {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        block-size: 100%;
+
+        &Link {
+            display: inline-block;
+            padding: 12px;
+        }
+    }
+}
+
+@media (min-width: 600px) {
+    .nav {
+        background-color: inherit;
+    }
+}

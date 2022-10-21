@@ -2,6 +2,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 20px;
-    padding-block: 1.6rem;
+    padding-block: max(4%, 1.6rem);
     padding-inline: 5%;
 }

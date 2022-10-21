@@ -1,27 +1,15 @@
-import styles from './sass/App.module.scss'
-import List from './components/List'
+import { Outlet } from 'react-router-dom'
+import Footer from './components/Footer'
+import Header from './components/Header'
 
-function App() {
+const App = () => {
     return (
         <>
-            <header className={styles.header}>
-                <h1 className={styles.headerTitle}>Lista de criptosmonedas</h1>
-            </header>
+            <Header />
             <main>
-                <List />
+                <Outlet />
             </main>
-            <footer className={styles.footer}>
-                <a
-                    className={styles.footerLink}
-                    href='https://www.flaticon.es/iconos-gratis/cargando'
-                    title='cargando iconos'
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    Cargando iconos creados por Krystsina Mikhailouskaya -
-                    Flaticon
-                </a>
-            </footer>
+            <Footer />
         </>
     )
 }
