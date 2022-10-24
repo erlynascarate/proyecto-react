@@ -8,7 +8,7 @@ async function fetchAPI(setCripto, id) {
 
     try {
         const { data } = await axios.get(`${API_URL}assets/${id}`)
-        console.log(data.data)
+
         setCripto(data.data)
     } catch (error) {
         console.error('La petición falló')
@@ -16,21 +16,40 @@ async function fetchAPI(setCripto, id) {
 }
 
 const Cripto = () => {
-    const [cripto, setCripto] = useState({})
+    const [cripto, setCripto] = useState({
+        name: 'Cargando cripto...',
+        symbol: 'Cpt',
+        rank: 0,
+        priceUsd: 0,
+        maxSupply: 0,
+        changePercent24Hr: 0,
+    })
     const { id } = useParams()
 
     useEffect(() => {
         fetchAPI(setCripto, id)
     }, [])
 
-    const { name, symbol, rank, price, changePercent, explorer } = cripto
+    const {
+        name,
+        symbol,
+        rank,
+        priceUsd,
+        maxSupply,
+        changePercent24Hr,
+        explorer,
+    } = cripto
+
+    const price = parseFloat(priceUsd).toFixed(5)
+    const mxSupply = parseFloat(maxSupply).toFixed(3)
+    const changePercent = parseFloat(changePercent24Hr).toFixed(7)
 
     return (
-        <article>
+        <article className={styles.item}>
             <p className={styles.itemName}>{name}</p>
             <p>{symbol}</p>
             <p>Rank: {rank}</p>
-            <p className={styles.itemPrice}>Precio: {price}</p>
+            <p className={styles.itemPrice}>Precio: {price}$</p>
             <p>
                 Variación 24hrs:{' '}
                 <span
@@ -41,6 +60,7 @@ const Cripto = () => {
                     {changePercent}%
                 </span>
             </p>
+            <p className={styles.itemPrice}>Suministro máximo: {mxSupply}$</p>
             <a
                 className={styles.itemLink}
                 href={explorer}
